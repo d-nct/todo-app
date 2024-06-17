@@ -35,6 +35,17 @@ complete_todo() {
     fi
 }
 
+# Imprime um texto de ajuda
+print_help() {
+    echo "Adicionar tarefa: todo \"Fazer tal coisa\""
+    echo "Listar tarefas:   todo list | todo -l"
+    echo "Sortear tarefa:   todo"
+    echo "Completar tarefa: todo complete | todo -c"
+    echo "Exibir a ajuda:   todo --help | todo -h"
+    echo " "
+    echo "Para mais detalhes, consulte o arquivo README.md"
+}
+
 # Controla o fluxo do programa
 if [ "$#" -eq 0 ]; then # todo
     if [ -s "$TODO_FILE" ]; then
@@ -43,10 +54,16 @@ if [ "$#" -eq 0 ]; then # todo
     else
         echo "Sua lista de tarefas está vazia."
     fi
+
 elif [ "$1" == "list" ] || [ "$1" == "-l" ]; then # todo list | todo -l
     list_todos
+
 elif [ "$1" == "complete" ] || [ "$1" == "-c" ]; then # todo complete | todo -c
     complete_todo
+
+elif [ "$1" == "--help" ] || [ "$1" == "-h" ]; then # todo --help | todo -h
+    print_help
+
 else # todo "fazer tal coisa"
     echo "$*" >> "$TODO_FILE"
     echo "Tarefa adicionada: $*"
