@@ -24,9 +24,15 @@ todo
 todo complete | todo -c
 ```
 
+- Para exibir as instruções do programa:
+
+```bash
+todo --help | todo -h
+```
+
 # Instalação do Programa
 
-- Para inslar, basta executar o comando
+- Para instalar ou atualizar o programa, basta executar o comando
 
 ```bash
 make
