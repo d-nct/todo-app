@@ -19,7 +19,7 @@ list_todos() {
 # Marca uma tarefa como feita
 complete_todo() {
     list_todos
-    echo "Digite o número da tarefa que deseja marcar como completada:"
+    echo "Digite o número da tarefa completada:"
     read -r todo_number
 
     if ! [[ "$todo_number" =~ ^[0-9]+$ ]]; then
@@ -39,13 +39,13 @@ complete_todo() {
 if [ "$#" -eq 0 ]; then # todo
     if [ -s "$TODO_FILE" ]; then
         RANDOM_TODO=$(shuf -n 1 "$TODO_FILE")
-        echo "Tarefa sorteada: $RANDOM_TODO"
+        echo "Sua tarefa é: $RANDOM_TODO"
     else
         echo "Sua lista de tarefas está vazia."
     fi
-elif [ "$1" == "list" || "$1" == "-l" ]; then # todo list | todo -l
+elif [ "$1" == "list" ] || [ "$1" == "-l" ]; then # todo list | todo -l
     list_todos
-elif [ "$1" == "complete" || "$1" == "-c" ]; then # todo complete | todo -c
+elif [ "$1" == "complete" ] || [ "$1" == "-c" ]; then # todo complete | todo -c
     complete_todo
 else # todo "fazer tal coisa"
     echo "$*" >> "$TODO_FILE"
